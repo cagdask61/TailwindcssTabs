@@ -1,0 +1,35 @@
+<p-tabView [scrollable]="true" class="h-full block">
+    <p-tabPanel>
+        <ng-template pTemplate="header">
+            <svg class="fill-indigo-800" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path
+                    d="M3 13h1v7c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-7h1a1 1 0 0 0 .707-1.707l-9-9a.999.999 0 0 0-1.414 0l-9 9A1 1 0 0 0 3 13zm7 7v-5h4v5h-4zm2-15.586 6 6V15l.001 5H16v-5c0-1.103-.897-2-2-2h-4c-1.103 0-2 .897-2 2v5H6v-9.586l6-6z">
+                </path>
+            </svg>
+        </ng-template>
+        <div class="flex flex-row gap-10">
+            <button (click)="loadHomeComponent()"
+                class="w-32 h-32 shadow-lg rounded hover:bg-black/5 hover:scale-105 font-bold">
+                Home
+            </button>
+            <button (click)="loadProductsComponent()"
+                class="w-32 h-32 shadow-lg rounded hover:bg-black/5 hover:scale-105 font-bold">
+                Product
+            </button>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel [tooltip]="tab.title" *ngFor="let tab of tabsService.data(); let i = index">
+        <ng-template pTemplate="header">
+            <span>{{tab.title}}</span>
+            <button (click)="close(i)" class="rounded-full ml-3 bg-stone-50 hover:scale-125">
+                <svg class="fill-indigo-800" xmlns="http://www.w3.org/2000/svg" width="23" height="23"
+                    viewBox="0 0 24 24">
+                    <path
+                        d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z">
+                    </path>
+                </svg>
+            </button>
+        </ng-template>
+        <ng-tamplate loadTab [componentName]="tab.name" />
+    </p-tabPanel>
+</p-tabView>
