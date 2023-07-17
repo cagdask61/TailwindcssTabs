@@ -10,7 +10,7 @@ export class TabsService {
 
   private readonly localStorageService = inject(LocalStorageService);
 
-  data = signal<Array<TabModel>>(this.localStorageService.get('tabs'));
+  data = signal<Array<TabModel>>(this.localStorageService.get('tabs') ?? []);
 
   constructor() {
     effect(() => {
