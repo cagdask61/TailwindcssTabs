@@ -7,15 +7,45 @@
                 </path>
             </svg>
         </ng-template>
-        <div class="flex flex-row gap-10">
-            <button (click)="loadHomeComponent()"
-                class="w-28 h-28 shadow-lg rounded hover:bg-black/5 hover:scale-105 font-bold">
-                Home
-            </button>
-            <button (click)="loadProductsComponent()"
-                class="w-28 h-28 shadow-lg rounded hover:bg-black/5 hover:scale-105 font-bold">
-                Product
-            </button>
+        <div>
+            <h2 class="text-center font-bold text-lg">Ready Components</h2>
+            <div class="flex flex-row gap-10">
+                <button (click)="addToTabs('home_component')"
+                    class="w-28 h-28 shadow rounded hover:bg-black/5 hover:scale-105 font-bold">
+                    Home
+                </button>
+                <button (click)="addToTabs('products_component')"
+                    class="w-28 h-28 shadow rounded hover:bg-black/5 hover:scale-105 font-bold">
+                    Product
+                </button>
+            </div>
+        </div>
+        <hr class="mt-10 mb-10">
+        <div>
+            <h2 class="text-center font-bold text-lg mb-10">Add To Tabs</h2>
+            <form [formGroup]="tabForm" class="flex flex-col items-center justify-around">
+                <div class="flex flex-col gap-2 w-64 mb-10">
+                    <label for="componentName">Name</label>
+                    <p-dropdown inputId="componentName" class="w-full" formControlName="name" [options]="tabs"
+                        optionLabel="title" optionValue="name"></p-dropdown>
+                </div>
+                <div class="flex flex-col gap-2 w-64 mb-10">
+                    <label for="componentTitle">Title</label>
+                    <input formControlName="title" pInputText id="componentTitle" type="text" autocomplete="off" />
+                </div>
+                <div class="flex flex-col gap-2 w-64 mb-10">
+                    <label for="componentDescription">Description</label>
+                    <input formControlName="description" pInputText id="componentDescription" type="text"
+                        autocomplete="off" />
+                </div>
+                <div class="flex flex-row gap-2 w-64 mb-10  items-center justify-center">
+                    <p-checkbox formControlName="closable" [binary]="true" inputId="componentClosable"></p-checkbox>
+                    <label for="componentClosable">Closable</label>
+                </div>
+                <div class="w-40">
+                    <button (click)="add()" pButton class="w-full flex items-center justify-center">Add</button>
+                </div>
+            </form>
         </div>
     </p-tabPanel>
     <p-tabPanel [tooltip]="tab.description" *ngFor="let tab of tabsService.data(); let i = index">

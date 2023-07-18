@@ -1,7 +1,7 @@
 import { Injectable, effect, inject, signal } from '@angular/core';
 import { TabModel } from '../models/tabs-model/tab.model';
 import { LocalStorageService } from './local-storage.service';
-import { TABS } from '../app.tabs';
+import { PROVIDE_TABS_NAME } from '../app.tabs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,7 @@ import { TABS } from '../app.tabs';
 export class TabsService {
 
   private readonly localStorageService = inject(LocalStorageService);
+  private readonly tabs = inject(PROVIDE_TABS_NAME);
 
   data = signal<Array<TabModel>>(this.localStorageService.get('tabs') ?? []);
 
@@ -33,7 +34,7 @@ export class TabsService {
   }
 
   get(name: string): TabModel | undefined {
-    return TABS.find((value) => value.name === name);
+    return this.tabs.find((value) => value.name === name);
   }
 
 }
