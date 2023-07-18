@@ -1,7 +1,7 @@
 import { Injectable, effect, inject, signal } from '@angular/core';
 import { TabModel } from '../models/tabs-model/tab.model';
-import { Tabs } from '../constants/tabs';
 import { LocalStorageService } from './local-storage.service';
+import { TABS } from '../app.tabs';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +33,7 @@ export class TabsService {
   }
 
   get(name: string): TabModel | undefined {
-    return Tabs.find((value) => value.name === name);
+    return TABS.find((value) => value.name === name);
   }
 
 }

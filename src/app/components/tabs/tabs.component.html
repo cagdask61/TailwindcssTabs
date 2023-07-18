@@ -9,19 +9,20 @@
         </ng-template>
         <div class="flex flex-row gap-10">
             <button (click)="loadHomeComponent()"
-                class="w-32 h-32 shadow-lg rounded hover:bg-black/5 hover:scale-105 font-bold">
+                class="w-28 h-28 shadow-lg rounded hover:bg-black/5 hover:scale-105 font-bold">
                 Home
             </button>
             <button (click)="loadProductsComponent()"
-                class="w-32 h-32 shadow-lg rounded hover:bg-black/5 hover:scale-105 font-bold">
+                class="w-28 h-28 shadow-lg rounded hover:bg-black/5 hover:scale-105 font-bold">
                 Product
             </button>
         </div>
     </p-tabPanel>
-    <p-tabPanel [tooltip]="tab.title" *ngFor="let tab of tabsService.data(); let i = index">
+    <p-tabPanel [tooltip]="tab.description" *ngFor="let tab of tabsService.data(); let i = index">
         <ng-template pTemplate="header">
             <span>{{tab.title}}</span>
-            <button (click)="close(i)" class="rounded-full ml-3 bg-stone-50 hover:scale-125">
+            <button *ngIf="tab.closable" (click)="close(i)"
+                class="ease-in-out duration-200 rounded-full ml-3 bg-stone-50 hover:scale-125">
                 <svg class="fill-indigo-800" xmlns="http://www.w3.org/2000/svg" width="23" height="23"
                     viewBox="0 0 24 24">
                     <path
