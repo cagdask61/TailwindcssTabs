@@ -1,6 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 
 import { TableModule } from "primeng/table";
+import { ButtonModule } from "primeng/button";
+
+
+import { ProductsService } from 'src/app/services/products.service';
+import { TabsService } from 'src/app/services/tabs.service';
+import { TabModel } from 'src/app/models/tabs-model/tab.model';
 
 @Component({
   selector: 'app-products',
@@ -8,18 +14,14 @@ import { TableModule } from "primeng/table";
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
   imports: [
-    TableModule
+    TableModule,
+    ButtonModule
   ],
 })
 export default class ProductsComponent implements OnInit, OnDestroy {
 
-  products = [
-    { id: 1, name: "Hp Laptop", price: 20_000, category: 'Teknoloji' },
-    { id: 2, name: "Çorap", price: 10_00, category: 'Giyim' },
-    { id: 3, name: "Kitap", price: 50_00, category: 'Kitaplar' },
-    { id: 4, name: "Televizyon", price: 15_000, category: 'Teknoloji' },
-    { id: 5, name: "Tencere", price: 200_00, category: 'Mutfak' },
-  ];
+  private tabsService = inject(TabsService);
+  readonly productsService = inject(ProductsService);
 
   ngOnInit(): void {
     console.log("Created");
@@ -29,4 +31,16 @@ export default class ProductsComponent implements OnInit, OnDestroy {
     console.log("Closed");
   }
 
+  openToTabs(id: number) {
+    const product = this.productsService.get(id);
+    const { closable, component, name } = <TabModel>this.tabsService.get('product_detail');
+    this.tabsService.add({
+      closable: closable,
+      name: name,
+      title: `${product?.name}`,
+      component: component,
+      data: product,
+      description: `${product?.name} ismindeki ürün detayı`
+    });
+  }
 }

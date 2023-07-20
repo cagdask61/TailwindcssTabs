@@ -26,8 +26,8 @@
             <form [formGroup]="tabForm" class="flex flex-col items-center justify-around">
                 <div class="flex flex-col gap-2 w-64 mb-10">
                     <label for="componentName">Name</label>
-                    <p-dropdown inputId="componentName" class="w-full" formControlName="name" [options]="tabs"
-                        optionLabel="title" optionValue="name"></p-dropdown>
+                    <p-dropdown inputId="componentName" formControlName="name" [options]="tabs" optionLabel="title"
+                        optionValue="name"></p-dropdown>
                 </div>
                 <div class="flex flex-col gap-2 w-64 mb-10">
                     <label for="componentTitle">Title</label>
@@ -61,6 +61,6 @@
                 </svg>
             </button>
         </ng-template>
-        <ng-tamplate loadTab [componentName]="tab.name" />
+        <ng-tamplate loadTab [componentName]="tab.name" [data]="tab.data" />
     </p-tabPanel>
 </p-tabView>

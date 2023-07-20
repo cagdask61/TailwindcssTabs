@@ -11,7 +11,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
-import { PROVIDE_TABS_NAME } from 'src/app/app.tabs';
+import { PROVIDE_TABS } from 'src/app/app.tabs';
 
 @Component({
   selector: 'app-tabs',
@@ -36,10 +36,9 @@ import { PROVIDE_TABS_NAME } from 'src/app/app.tabs';
 })
 export default class TabsComponent {
 
-  readonly tabs = inject(PROVIDE_TABS_NAME);
+  readonly tabs = inject(PROVIDE_TABS);
 
   readonly tabsService = inject(TabsService);
-
 
   tabForm: FormGroup = new FormGroup({
     name: new FormControl(""),
