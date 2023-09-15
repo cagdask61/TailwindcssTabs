@@ -1,7 +1,8 @@
 import { InjectionToken, Provider } from "@angular/core";
+
+import { TabModel } from "./models/tabs-model/tab.model";
 import HomeComponent from "./components/home/home.component";
 import ProductsComponent from "./components/products/products.component";
-import { TabModel } from "./models/tabs-model/tab.model";
 import ProductDetailComponent from "./components/product-detail/product-detail.component";
 
 

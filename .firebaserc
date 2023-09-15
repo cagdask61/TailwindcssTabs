@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "tailwindcsstabs": {
+      "hosting": {
+        "TailwindcssTabs": [
+          "tailwindcsstabs"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "tailwindcsstabs"
+  }
+}

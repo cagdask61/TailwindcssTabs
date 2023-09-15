@@ -3,7 +3,6 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { TableModule } from "primeng/table";
 import { ButtonModule } from "primeng/button";
 
-
 import { ProductsService } from 'src/app/services/products.service';
 import { TabsService } from 'src/app/services/tabs.service';
 import { TabModel } from 'src/app/models/tabs-model/tab.model';
@@ -15,7 +14,7 @@ import { TabModel } from 'src/app/models/tabs-model/tab.model';
   styleUrls: ['./products.component.scss'],
   imports: [
     TableModule,
-    ButtonModule
+    ButtonModule,
   ],
 })
 export default class ProductsComponent implements OnInit, OnDestroy {

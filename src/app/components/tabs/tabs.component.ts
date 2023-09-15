@@ -1,17 +1,17 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component, Type, inject } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { LoadTabDirective } from 'src/app/directives/load-tab.directive';
 import { TabsService } from 'src/app/services/tabs.service';
 import { TabModel } from 'src/app/models/tabs-model/tab.model';
+import { PROVIDE_TABS } from 'src/app/app.tabs';
 
 import { TabViewModule } from 'primeng/tabview';
 import { InputTextModule } from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
-import { PROVIDE_TABS } from 'src/app/app.tabs';
 
 @Component({
   selector: 'app-tabs',
@@ -26,7 +26,6 @@ import { PROVIDE_TABS } from 'src/app/app.tabs';
 
     LoadTabDirective,
 
-
     TabViewModule,
     InputTextModule,
     CheckboxModule,
@@ -37,8 +36,9 @@ import { PROVIDE_TABS } from 'src/app/app.tabs';
 export default class TabsComponent {
 
   readonly tabs = inject(PROVIDE_TABS);
-
   readonly tabsService = inject(TabsService);
+
+  tabsTrackByFn = (index: number, tab: TabModel) => tab.name; 
 
   tabForm: FormGroup = new FormGroup({
     name: new FormControl(""),
@@ -46,7 +46,6 @@ export default class TabsComponent {
     description: new FormControl(""),
     closable: new FormControl(true),
   });
-
 
   close(index: number) {
     this.tabsService.delete(index);
